@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Disease {
 
-    private long id;
+    private Long id;
     private String name;
     private short type;
     private short reimbursementStandards;

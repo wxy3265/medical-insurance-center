@@ -8,4 +8,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SelfFunded {
+
+    private Long id;
+    private short medicalCategory;
+    private short medicalPersonnelCategory;
+    private short hospitalLevel;
+    private int maximumAmount;
+    private int minimumAmount;
+    private float reimbursementProportion;
+
 }

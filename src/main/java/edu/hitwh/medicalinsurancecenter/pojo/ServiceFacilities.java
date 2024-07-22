@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ServiceFacilities {
 
-    private long id;
+    private Long id;
     private String name;
     private short expType;
     private LocalDateTime startTime;

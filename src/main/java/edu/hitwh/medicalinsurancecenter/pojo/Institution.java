@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Institution {
 
-    private long id;
+    private Long id;
     private String name;
     private short expType;
     private short expLevel;

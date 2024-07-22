@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Application {
 
-    private long id;
+    private Long id;
     private long personId;
     private LocalDate startDate;
     private LocalDate terminalDate;
