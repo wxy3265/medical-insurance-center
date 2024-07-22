@@ -2,7 +2,6 @@ package edu.hitwh.medicalinsurancecenter.controller;
 
 import edu.hitwh.medicalinsurancecenter.common.R;
 import edu.hitwh.medicalinsurancecenter.pojo.Diagnosis;
-import edu.hitwh.medicalinsurancecenter.pojo.Medicine;
 import edu.hitwh.medicalinsurancecenter.service.DiagnosisService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
