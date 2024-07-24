@@ -10,11 +10,11 @@ import lombok.NoArgsConstructor;
 public class SelfFunded {
 
     private Long id;
-    private short medicalCategory;
-    private short medicalPersonnelCategory;
-    private short hospitalLevel;
-    private int maximumAmount;
-    private int minimumAmount;
-    private float reimbursementProportion;
+    private short type;
+    private short personType;
+    private short level;
+    private int maxAmount;
+    private int minAmount;
+    private float reimbursement;
 
 }

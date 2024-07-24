@@ -13,7 +13,7 @@ public class People {
 
     private Long id;
     private String peopleId;
-    private short idType;
+    private short cardType;
     private String cardId;
     private String name;
     private short sex;
@@ -35,14 +35,15 @@ public class People {
     private String companyId;
     private short medicalPersonnel;
     private short health;
-    private short modelWorker;
-    private short cadre;
-    private short civilServant;
-    private short authorizedStrength;
+    private boolean modelWorker;
+    private boolean cadre;
+    private boolean civilServant;
+    private boolean authorizedStrength;
     private short residentType;
-    private short migrantWorker;
-    private short employer;
-    private short militaryPersonnel;
+    private boolean flexibleEmployment;
+    private boolean migrantWorker;
+    private boolean employer;
+    private boolean militaryPersonnel;
     private String socialSecurityId;
     private String medinsId;
 

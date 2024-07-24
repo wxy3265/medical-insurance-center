@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 public class MinimumPaymentStandard {
 
     private Long id;
-    private short medicalCategory;
-    private short medicalPersonnelCategory;
-    private short hospitalLevel;
-    private int minimumPaymentStandard;
+    private short type;
+    private short personType;
+    private short level;
+    private int standard;
 
 }

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class CappingLine {
 
     private Long id;
-    private short medicalPersonalCategory;
-    private int cappingLineFee;
+    private short personType;
+    private int topLine;
 
 }

@@ -11,9 +11,10 @@ public class Company {
 
     private Long id;
     private String companyId;
-    private short companyType;
+    private String name;
+    private short type;
     private String address;
     private String postcode;
-    private String phoneNumber;
+    private String phone;
 
 }
