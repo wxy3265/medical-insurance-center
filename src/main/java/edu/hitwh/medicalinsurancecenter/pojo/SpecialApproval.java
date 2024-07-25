@@ -17,9 +17,9 @@ public class SpecialApproval {
     private LocalDate startDate;
     private LocalDate terminationDate;
     private String medicineCode;
-    private String approvalOpinions;
+    private boolean approvalOpinions;
     private String approver;
     private LocalDate approvalDate;
-    private String approvalFlag;
+    private boolean approvalFlag;
 
 }

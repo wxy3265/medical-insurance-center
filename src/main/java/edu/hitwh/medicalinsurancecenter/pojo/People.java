@@ -17,7 +17,7 @@ public class People {
     private String cardId;
     private String name;
     private short sex;
-    private String nationality;
+    private short nationality;
     private LocalDate birthday;
     private LocalDate workDate;
     private LocalDate retirementDate;

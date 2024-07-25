@@ -14,7 +14,7 @@ public class Visit {
     private Long id;
     private Long personId;
     private String hospitalizationNumber;
-    private String designatedNumber;
+    private String institutionNumber;
     private short medicalCategory;
     private LocalDate admissionDate;
     private LocalDate dischargeDate;

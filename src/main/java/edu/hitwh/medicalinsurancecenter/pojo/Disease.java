@@ -10,9 +10,10 @@ import lombok.NoArgsConstructor;
 public class Disease {
 
     private Long id;
+    private String disId;
     private String name;
     private short type;
-    private short reimbursementStandards;
+    private boolean reimbursementStandards;
     private String note;
 
 }
