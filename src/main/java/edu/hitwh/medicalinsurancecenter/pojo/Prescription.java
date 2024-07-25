@@ -16,5 +16,6 @@ public class Prescription {
     private int unitPrice;
     private int quantity;
     private int amount;
+    private Long visitId;
 
 }

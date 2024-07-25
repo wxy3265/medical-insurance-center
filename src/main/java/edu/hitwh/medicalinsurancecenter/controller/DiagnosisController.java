@@ -1,5 +1,8 @@
 package edu.hitwh.medicalinsurancecenter.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import edu.hitwh.medicalinsurancecenter.common.PageBean;
 import edu.hitwh.medicalinsurancecenter.common.R;
 import edu.hitwh.medicalinsurancecenter.pojo.Diagnosis;
 import edu.hitwh.medicalinsurancecenter.service.DiagnosisService;
@@ -24,6 +27,26 @@ public class DiagnosisController {
     @GetMapping
     public R list() {
         return R.success(diagnosisService.list());
+    }
+
+    /**
+     * 诊疗信息分页查询
+     * @param page 当前页数
+     * @param pageSize 每页条数
+     * @param name 查询条件-名称
+     * @return 查询结果(PageBean)
+     */
+    @GetMapping("/page")
+    public R page(Integer page, Integer pageSize, String name) {
+
+        LambdaQueryWrapper<Diagnosis> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.like(!name.isEmpty(), Diagnosis::getName, name);
+
+        Page<Diagnosis> pageInfo = new Page<>(page, pageSize);
+        Page<Diagnosis> pageRes = diagnosisService.page(pageInfo, queryWrapper);
+        PageBean pageBean = new PageBean(pageRes.getTotal(), pageRes.getRecords().toArray());
+
+        return R.success(pageBean);
     }
 
     /**
