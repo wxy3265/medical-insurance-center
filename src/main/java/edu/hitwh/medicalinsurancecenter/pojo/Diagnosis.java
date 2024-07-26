@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class Diagnosis {
 
     private Long id;
-    private String diaId;
+    private String treId;
     private String name;
     private short expType;
     private short expLevel;

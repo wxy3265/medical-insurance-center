@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 public class ServiceFacilities {
 
     private Long id;
+    private String serId;
     private String name;
     private short expType;
     private LocalDateTime startTime;

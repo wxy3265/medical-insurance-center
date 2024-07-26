@@ -129,7 +129,7 @@ public class InsuranceController {
             } else if (prescription.getChargeableItemsCategory() == 1) {
                 // 查询诊疗项目
                 LambdaQueryWrapper<Diagnosis> diagnosisLambdaQueryWrapper = new LambdaQueryWrapper<>();
-                diagnosisLambdaQueryWrapper.eq(Diagnosis::getDiaId, prescription.getProjectCoding());
+                diagnosisLambdaQueryWrapper.eq(Diagnosis::getTreId, prescription.getProjectCoding());
                 Diagnosis diagnosis = diagnosisService.getOne(diagnosisLambdaQueryWrapper);
                 // 医院等级判断
                 if (diagnosis.getHosLevel() < visitDto.getHospitalGrade()) continue;
