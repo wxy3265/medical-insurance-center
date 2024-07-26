@@ -6,6 +6,6 @@ import edu.hitwh.medicalinsurancecenter.pojo.Visit;
 
 public interface VisitService extends IService<Visit> {
 
-    public void saveWithPrescriptions(VisitDto visitDto);
+    void saveWithAmount(VisitDto visitDto);
 
 }

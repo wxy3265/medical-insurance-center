@@ -4,22 +4,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Institution {
 
     private Long id;
+    private String institutionId;
     private String name;
-    private short expType;
-    private short expLevel;
-    private int maxPrice;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
-    private boolean valid;
     private boolean hosLevel;
-    private boolean approvalMark;
+    private String postcode;
+    private String repName;
+    private String repPhone;
+    private String cntName;
+    private String cntPhone;
+    private String address;
+    private String note;
 
 }

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SelfFunded {
+public class SelfFunded implements Comparable<SelfFunded>{
 
     private Long id;
     private short type;
@@ -17,4 +17,8 @@ public class SelfFunded {
     private int minAmount;
     private float reimbursement;
 
+    @Override
+    public int compareTo(SelfFunded o) {
+        return this.minAmount - o.minAmount;
+    }
 }

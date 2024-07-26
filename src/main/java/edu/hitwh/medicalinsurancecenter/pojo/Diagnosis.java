@@ -20,7 +20,7 @@ public class Diagnosis {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private boolean valid;
-    private boolean hosLevel;
+    private short hosLevel;
     private boolean approvalMark;
 
 }

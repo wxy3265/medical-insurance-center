@@ -13,8 +13,8 @@ public class PersonalAnnualExpense {
     private Long peopleId;
     private String year;
     private int reimbursementTime;
-    private int medicalExpenses;
-    private int medicareExpenses;
-    private int personalExpenses;
+    private double medicalExpenses;
+    private double medicareExpenses;
+    private double personalExpenses;
 
 }
