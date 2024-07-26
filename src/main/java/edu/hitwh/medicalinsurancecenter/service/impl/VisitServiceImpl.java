@@ -54,4 +54,11 @@ public class VisitServiceImpl extends ServiceImpl<VisitMapper, Visit> implements
 
     }
 
+    @Override
+    public void delete(Integer id) {
+
+        ;
+
+    }
+
 }

@@ -82,4 +82,18 @@ public class ServiceFacilitiesController {
         return R.success();
     }
 
+    /**
+     * 根据名称和编号查询服务设施
+     * @param name 服务设施名称
+     * @param serId 服务设施编号
+     * @return 查询结果（List）
+     */
+    @GetMapping("/query")
+    public R query(String name, String serId) {
+        LambdaQueryWrapper<ServiceFacilities> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.like(name != null, ServiceFacilities::getName, name)
+                .like(serId != null, ServiceFacilities::getSerId, serId);
+        return R.success(serviceFacilitiesService.list(queryWrapper));
+    }
+
 }

@@ -13,15 +13,15 @@ public class Visit {
 
     private Long id;
     private Long personId;
-    private String hospitalizationNumber;
-    private String institutionNumber;
+    private String hospitalNumber;
+    private String institutionId;
     private short medicalCategory;
     private LocalDate admissionDate;
     private LocalDate dischargeDate;
     private String diseaseCode;
-    private short hospitalGrade;
+    private short hospitalLevel;
     private String admissionCode;
-    private String diagnosedName;
+    private String diagnosisName;
     private String dischargeReason;
     private String settlementFlag;
 

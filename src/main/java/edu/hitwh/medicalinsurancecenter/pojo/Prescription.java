@@ -10,12 +10,13 @@ import lombok.NoArgsConstructor;
 public class Prescription {
 
     private Long id;
-    private short chargeableItemsCategory;
-    private int projectCoding;
-    private int projectName;
-    private int unitPrice;
+    private short category;
+    private Long itemId;
+    private String itemName;
+    private int price;
     private int quantity;
     private int amount;
     private Long visitId;
+    private String hospitalNumber;
 
 }

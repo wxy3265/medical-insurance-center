@@ -82,4 +82,18 @@ public class MedicineController {
         return R.success();
     }
 
+    /**
+     * 根据名称和编号查询药品
+     * @param name 药品名称
+     * @param medicId 药品编号
+     * @return 查询到的药品信息(List)
+     */
+    @GetMapping("/query")
+    public R query(String name, String medicId) {
+        LambdaQueryWrapper<Medicine> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.like(name != null, Medicine::getName, name)
+                .like(medicId != null, Medicine::getMedicId, medicId);
+        return R.success(medicineService.list(queryWrapper));
+    }
+
 }

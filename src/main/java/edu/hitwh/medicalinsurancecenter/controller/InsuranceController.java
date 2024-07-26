@@ -70,11 +70,15 @@ public class InsuranceController {
         if (!disease.isReimbursementStandards()) {
             return R.error("该病种不可报销");
         }
+        log.info("1");
 
         // 报销人员就诊定点机构审批
-        People people = peopleService.getById(visitDto.getPersonId());
+        LambdaQueryWrapper<People> peopleLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        peopleLambdaQueryWrapper.eq(visitDto.getPersonId() != null, People::getCardId, visitDto.getPersonId());
+        People people = peopleService.getOne(peopleLambdaQueryWrapper);
+        log.info("2");
         String designateNumber = people.getMedinsId();
-        String institutionCode = visitDto.getInstitutionNumber();
+        String institutionCode = visitDto.getInstitutionId();
         // 不在定点机构
         if (!institutionCode.equals(designateNumber)) {
             // 查询审批信息
@@ -96,10 +100,10 @@ public class InsuranceController {
             // 累加金额
             total += prescription.getAmount();
             // 药品
-            if (prescription.getChargeableItemsCategory() == 0) {
+            if (prescription.getCategory() == 0) {
                 // 查询处方药品
                 LambdaQueryWrapper<Medicine> medicineLambdaQueryWrapper = new LambdaQueryWrapper<>();
-                medicineLambdaQueryWrapper.eq(Medicine::getMedicId, prescription.getProjectCoding());
+                medicineLambdaQueryWrapper.eq(Medicine::getId, prescription.getItemId());
                 Medicine medicine = medicineService.getOne(medicineLambdaQueryWrapper);
                 // 特检审批判断
                 if (medicine.isSpecialMark()) {
@@ -115,7 +119,7 @@ public class InsuranceController {
                     }
                 }
                 // 医院等级判断
-                if (medicine.getHosLevel() < visitDto.getHospitalGrade()) continue;
+                if (medicine.getHosLevel() < visitDto.getHospitalLevel()) continue;
                 // 最高限价判断
                 if (prescription.getAmount() > medicine.getMaxPrice()) {
                     prescription.setAmount(medicine.getMaxPrice());
@@ -126,13 +130,13 @@ public class InsuranceController {
                     insurance += prescription.getAmount() * 0.5;
                     secondSelfFund += prescription.getAmount() * 0.5;
                 }
-            } else if (prescription.getChargeableItemsCategory() == 1) {
+            } else if (prescription.getCategory() == 1) {
                 // 查询诊疗项目
                 LambdaQueryWrapper<Diagnosis> diagnosisLambdaQueryWrapper = new LambdaQueryWrapper<>();
-                diagnosisLambdaQueryWrapper.eq(Diagnosis::getTreId, prescription.getProjectCoding());
+                diagnosisLambdaQueryWrapper.eq(Diagnosis::getId, prescription.getItemId());
                 Diagnosis diagnosis = diagnosisService.getOne(diagnosisLambdaQueryWrapper);
                 // 医院等级判断
-                if (diagnosis.getHosLevel() < visitDto.getHospitalGrade()) continue;
+                if (diagnosis.getHosLevel() < visitDto.getHospitalLevel()) continue;
                 // 最高限价判断
                 if (prescription.getAmount() > diagnosis.getMaxPrice()) {
                     prescription.setAmount(diagnosis.getMaxPrice());
@@ -153,7 +157,7 @@ public class InsuranceController {
                 = new LambdaQueryWrapper<>();
         minimumPaymentStandardLambdaQueryWrapper.eq(MinimumPaymentStandard::getType, visitDto.getMedicalCategory())
                 .eq(MinimumPaymentStandard::getPersonType, people.getMedicalPersonnel())
-                .eq(MinimumPaymentStandard::getLevel, visitDto.getHospitalGrade());
+                .eq(MinimumPaymentStandard::getLevel, visitDto.getHospitalLevel());
         MinimumPaymentStandard minimumStandard =
                 minimumPaymentStandardService.getOne(minimumPaymentStandardLambdaQueryWrapper);
         if (minimumStandard == null) return R.error("缺少起付标准信息");
@@ -169,7 +173,7 @@ public class InsuranceController {
         // 获取个人分段自费比例
         LambdaQueryWrapper<SelfFunded> selfFundedLambdaQueryWrapper = new LambdaQueryWrapper<>();
         selfFundedLambdaQueryWrapper.eq(SelfFunded::getType, visitDto.getMedicalCategory())
-                .eq(SelfFunded::getLevel, visitDto.getHospitalGrade())
+                .eq(SelfFunded::getLevel, visitDto.getHospitalLevel())
                 .eq(SelfFunded::getPersonType, people.getMedicalPersonnel());
         List<SelfFunded> selfFundedList = selfFundedService.list(selfFundedLambdaQueryWrapper);
         if (selfFundedList.isEmpty()) return R.error("缺少个人分段自费比例信息");
@@ -235,6 +239,17 @@ public class InsuranceController {
     @PostMapping("/submit")
     public R submit(@RequestBody VisitDto visitDto) {
         visitService.saveWithAmount(visitDto);
+        return R.success();
+    }
+
+    /**
+     * 撤销报销
+     * @param id 要撤销的报销id
+     * @return 成功信息
+     */
+    @DeleteMapping("/{id}")
+    public R delete(@PathVariable Integer id) {
+        visitService.delete(id);
         return R.success();
     }
 

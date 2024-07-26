@@ -39,7 +39,7 @@ public class PeopleController {
     public R query(Long peopleId, String peopleName) {
 
         LambdaQueryWrapper<People> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(peopleId != null, People::getPeopleId, peopleId)
+        queryWrapper.like(peopleId != null, People::getPeopleId, peopleId)
                     .like(peopleName != null, People::getName, peopleName);
 
         return R.success(peopleService.list(queryWrapper));

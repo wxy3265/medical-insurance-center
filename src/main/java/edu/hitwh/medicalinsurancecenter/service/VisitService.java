@@ -8,4 +8,5 @@ public interface VisitService extends IService<Visit> {
 
     void saveWithAmount(VisitDto visitDto);
 
+    void delete(Integer id);
 }

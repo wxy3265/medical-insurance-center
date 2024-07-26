@@ -82,4 +82,18 @@ public class DiagnosisController {
         return R.success();
     }
 
+    /**
+     * 根据名称和编号查询诊疗项目
+     * @param name 诊疗项目名称
+     * @param treId 诊疗项目编号
+     * @return 查询结果（List）
+     */
+    @GetMapping("/query")
+    public R query(String name, String treId) {
+        LambdaQueryWrapper<Diagnosis> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.like(name != null, Diagnosis::getName, name)
+                .like(treId != null, Diagnosis::getTreId, treId);
+        return R.success(diagnosisService.list(queryWrapper));
+    }
+
 }
